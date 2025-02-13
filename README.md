@@ -1,16 +1,35 @@
-# test
+# Flutter Prototype
+Este projeto é um protótipo desenvolvido com Flutter, com o objetivo de futuramente portar o aplicativo web existente para as plataformas móveis Android e iOS.
 
-A new Flutter project.
+## Tecnologias Utilizadas
+- Flutter
+- Dart
 
-## Getting Started
+## Objetivo
+O principal propósito deste projeto é validar a experiência do usuário e testar funcionalidades antes da migração completa do sistema web para mobile.
 
-This project is a starting point for a Flutter application.
+## Instalação
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/victtor01/first-project-flutter.git
+   ```
+2. Acesse o diretório do projeto:
+   ```sh
+   cd first-project-flutter
+   ```
+3. Instale as dependências:
+   ```sh
+   flutter pub get
+   ```
+4. Execute o projeto:
+   ```sh
+   flutter run
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+## Futuras Implementações
+- Melhorias na UI/UX
+- Integração com API
+- Implementação de funcionalidades avançadas
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contribuição
+Sinta-se à vontade para contribuir com o projeto, enviando sugestões ou pull requests.
