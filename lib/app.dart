@@ -8,7 +8,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
-			
-    return MaterialApp(home: SplashPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashPage());
   }
 }
