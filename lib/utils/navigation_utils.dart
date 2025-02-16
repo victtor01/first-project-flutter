@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:test/common/constants/app_colors.dart';
 
+void navigateTo(BuildContext context, Widget Function() destination) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => destination()),
+  );
+}
+
 class CustomLink extends StatelessWidget {
   final String primaryText;
   final String secondaryText;

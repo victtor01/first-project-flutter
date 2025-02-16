@@ -1,16 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:test/common/constants/api_constants.dart';
 import 'package:test/components/button_gradient.dart';
 import 'package:test/components/custom_input.dart';
-import 'package:test/features/main/main_page.dart';
 import 'package:test/features/select_store/page.dart';
 import 'package:test/features/sign_up/sign_up_page.dart';
 import 'package:test/utils/api.dart';
 import 'package:test/utils/navigation_utils.dart';
-import 'package:http/http.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,11 +21,12 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
 
   Future<void> _loginForm() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_formKey.currentState!.validate()) {
       String email = _emailController.text;
       String password = _passwordController.text;
 
-      const String url = "http://10.220.0.8:5039/auth";
+      final String url = "${ApiConstants.apiURL}/auth";
 
       try {
         var response = await ApiService.dio.post(
@@ -38,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
           data: {"email": email, "password": password},
         );
 
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => SelectStorePage()),
         );
