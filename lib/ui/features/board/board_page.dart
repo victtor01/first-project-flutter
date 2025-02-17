@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test/common/constants/app_colors.dart';
-import 'package:test/components/button_gradient.dart';
-import 'package:test/features/login/login_page.dart';
-import 'package:test/features/sign_up/sign_up_page.dart';
+import 'package:test/ui/components/button_gradient.dart';
+import 'package:test/ui/features/login/login_page.dart';
 
 class BoardPage extends StatelessWidget {
   const BoardPage({super.key});

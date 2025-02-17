@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/components/button_gradient.dart';
-import 'package:test/components/custom_input.dart';
-import 'package:test/features/login/login_page.dart';
+import 'package:test/ui/components/button_gradient.dart';
+import 'package:test/ui/components/custom_input.dart';
+import 'package:test/ui/features/login/login_page.dart';
 import 'package:test/utils/navigation_utils.dart';
 
 class SignUpPage extends StatelessWidget {

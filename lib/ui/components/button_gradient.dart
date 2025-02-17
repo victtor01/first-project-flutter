@@ -27,8 +27,8 @@ class ButtonGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-					elevation: 20,
-					shadowColor: AppColors.indigo600.withOpacity(0.5),
+      elevation: 20,
+      shadowColor: AppColors.indigo600.withOpacity(0.5),
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: Ink(
         decoration: _decoration,

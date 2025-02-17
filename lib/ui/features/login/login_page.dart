@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:test/common/constants/api_constants.dart';
-import 'package:test/components/button_gradient.dart';
-import 'package:test/components/custom_input.dart';
-import 'package:test/features/select_store/page.dart';
-import 'package:test/features/sign_up/sign_up_page.dart';
+import 'package:test/ui/components/button_gradient.dart';
+import 'package:test/ui/components/custom_input.dart';
+import 'package:test/ui/features/select_store/select_store_page.dart';
+import 'package:test/ui/features/sign_up/sign_up_page.dart';
 import 'package:test/utils/api.dart';
 import 'package:test/utils/navigation_utils.dart';
 

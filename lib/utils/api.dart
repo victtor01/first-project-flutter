@@ -19,4 +19,16 @@ class ApiService {
         await cookieJar.loadForRequest(Uri.parse(ApiConstants.apiURL));
     return cookies;
   }
+
+  static void showCookies() async {
+    List<Cookie> cookies = await ApiService.getCookies();
+
+    if (cookies.isEmpty) {
+      print("Nenhum cookie encontrado.");
+    } else {
+      for (var cookie in cookies) {
+        print("Nome: ${cookie.name}, Valor: ${cookie.value}");
+      }
+    }
+  }
 }

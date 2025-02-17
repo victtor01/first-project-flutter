@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:test/common/constants/app_colors.dart';
 import 'package:test/common/constants/cookies_keys.dart';
-import 'package:test/features/home/home_page.dart';
-import 'package:test/features/login/login_page.dart';
-import 'package:test/features/orders/orders_page.dart';
-import 'package:test/features/products/products_page.dart';
-import 'package:test/features/tables/tables_page.dart';
+import 'package:test/ui/features/home/home_page.dart';
+import 'package:test/ui/features/login/login_page.dart';
+import 'package:test/ui/features/orders/orders_page.dart';
+import 'package:test/ui/features/products/products_page.dart';
+import 'package:test/ui/features/tables/tables_page.dart';
 import 'package:test/utils/api.dart';
 
 class MainPage extends StatefulWidget {
