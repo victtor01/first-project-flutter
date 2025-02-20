@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:test/common/constants/app_colors.dart';
+import 'package:test/core/interfaces/stores_interfaces/get_informations_response.dart';
+import 'package:test/core/services/navigation_service.dart';
 import 'package:test/core/services/stores_service.dart';
 import 'package:test/ui/components/store_card.dart';
+import 'package:test/ui/features/main/main_page.dart';
 
 class SelectStorePage extends StatefulWidget {
   const SelectStorePage({super.key});
@@ -12,16 +15,28 @@ class SelectStorePage extends StatefulWidget {
 }
 
 class _SelectStorePageState extends State<SelectStorePage> {
-  List<dynamic> stores = [];
+  List<InformationStore> stores = [];
   bool isLoading = true;
+		
+  final StoreService storeService = StoreService();
 
   void _getAllStores() async {
-    StoreService storeService = StoreService();
-    List<dynamic> allStores = await storeService.fetchStores();
+    try {
+      List<InformationStore> allStores = await storeService.fetchStores();
+      print(allStores);
+				
     setState(() {
       stores = allStores;
 						isLoading = false;
     });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _selectStore(String storeId, String? password) async {
+    await storeService.selectStore(storeId);
+    NavigationService.navigateTo(MainPage());
   }
 
   @override
@@ -87,9 +102,18 @@ class _SelectStorePageState extends State<SelectStorePage> {
           SliverList(
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
-              var store = stores[index]?["store"];
-              var revenue = stores[index]?["revenue"];
-              return StoreCard(store: store, index: index, revenue: revenue);
+              var store = stores[index].store;
+              var revenue = stores[index].revenue?.toDouble() ?? 0.0;
+
+              return Padding(
+                padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                child: StoreCard(
+                  store: store,
+                  index: index,
+                  revenue: revenue,
+                  onClick: () => _selectStore(store!.id, store.password),
+                ),
+              );
             }, childCount: stores.length),
           ),
         ],

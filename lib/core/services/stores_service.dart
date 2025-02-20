@@ -1,15 +1,34 @@
 import 'package:dio/dio.dart';
 import 'package:test/common/constants/api_constants.dart';
+import 'package:test/core/interfaces/stores_interfaces/get_informations_response.dart';
+import 'package:test/core/models/store_model.dart';
 import 'package:test/utils/api.dart';
 
 class StoreService {
-  Future<List<dynamic>> fetchStores() async {
+  Future<List<InformationStore>> fetchStores() async {
     final String url = "${ApiConstants.apiURL}/stores/my";
     final Dio dio = ApiService.dio;
 
     try {
       final response = await dio.get(url);
-      return response.data;
+      List<dynamic> data = response.data;
+
+      var informations = data.map((storeData) {
+        var store = storeData["store"];
+        var revenue = storeData["revenue"];
+
+        return InformationStore()
+          ..store = Store(
+            id: store["id"],
+            name: store["name"],
+            password: store["password"],
+            revenueGoal: (store["revenueGoal"] as num).toDouble(),
+          )
+          ..revenue = (revenue as num).toDouble();
+      }).toList();
+
+      print(informations);
+      return informations;
     } catch (e) {
       throw Exception("Erro ao buscar lojas: $e");
     }
@@ -30,17 +49,28 @@ class StoreService {
     }
   }
 
-  Future<dynamic> getInformations() async {
+  Future<InformationStore> getInformations() async {
     final String url = "${ApiConstants.apiURL}/stores/informations";
 
     try {
       Response<dynamic> response = await ApiService.dio.get(url);
       dynamic data = response.data;
-      print(data);
-      return data;
+      dynamic store = data["store"];
+
+      int revenue = data["revenue"];
+      int revenueGoalOfStore = store["revenueGoal"];
+
+      return InformationStore()
+        ..store = Store(
+          id: store["id"],
+          name: store["name"],
+          password: store["password"],
+          revenueGoal: revenueGoalOfStore.toDouble(),
+        )
+        ..revenue = revenue.toDouble();
     } catch (e) {
       print("Error $e");
+      throw Exception("store not found!");
     }
-    return null;
   }
 }
