@@ -87,8 +87,9 @@ class _SelectStorePageState extends State<SelectStorePage> {
           SliverList(
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
-              var store = stores[index];
-              return StoreCard(store: store, index: index);
+              var store = stores[index]?["store"];
+              var revenue = stores[index]?["revenue"];
+              return StoreCard(store: store, index: index, revenue: revenue);
             }, childCount: stores.length),
           ),
         ],

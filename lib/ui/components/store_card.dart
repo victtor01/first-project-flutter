@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:test/common/constants/app_colors.dart';
 import 'package:test/core/services/navigation_service.dart';
 import 'package:test/ui/components/animated_progress_bar.dart';
 import 'package:test/core/services/stores_service.dart';
 import 'package:test/ui/features/main/main_page.dart';
 import 'package:test/utils/navigation_utils.dart';
+import 'package:test/utils/transform_to_real.dart';
 
 class StoreCard extends StatelessWidget {
   final StoreService storesService = StoreService();
   final dynamic store;
+  final int revenue;
   final int index;
 
-  StoreCard({super.key, required this.store, required this.index});
+  double calculateRevenuePercentage(int storeRevenue, int revenue) {
+    if (storeRevenue == 0) return 0; // Evita divisão por zero
+    return (revenue / storeRevenue) * 100;
+  }
+
+  StoreCard(
+      {super.key, required this.store, required this.index, this.revenue = 0});
 
   Future<void> _selectStore() async {
     if (store == null) return;
@@ -117,20 +126,53 @@ class StoreCard extends StatelessWidget {
   }
 
   Widget _buildProgressBar() {
-    return Row(
+    double progress =
+        calculateRevenuePercentage(store["revenueGoal"], revenue) / 100;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: AnimatedProgressBar(progress: 0.8), // Exemplo com 80%
+        Row(
+          children: [
+            Expanded(
+              child: AnimatedProgressBar(progress: progress),
+            ),
+            const SizedBox(width: 10),
+            Text(
+              "${((progress) * 100).toStringAsFixed(2)}%",
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 10),
-        Text(
-          "${(0.8 * 100).toInt()}%",
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.black54,
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          decoration: BoxDecoration(
+            color: Colors.black12.withAlpha(10),
+            borderRadius: BorderRadius.circular(7),
           ),
-        ),
+          child: Row(
+            spacing: 5,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                formatToReais(revenue),
+                style: TextStyle(color: Colors.black45, fontSize: 10),
+              ),
+              Text(
+                "/",
+                style: TextStyle(color: Colors.black45),
+              ),
+              Text(
+                formatToReais(store["revenueGoal"]),
+                style: TextStyle(color: Colors.black45, fontSize: 10),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:test/common/constants/app_colors.dart';
 import 'package:test/core/services/stores_service.dart';
-import 'package:test/utils/api.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -61,7 +59,8 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               itemCount: stores.length,
               itemBuilder: (context, index) {
-                final store = stores[index];
+                final store = stores[index]?["store"];
+
                 return Container(
                   clipBehavior: Clip.hardEdge,
                   margin: EdgeInsets.only(left: 10),
@@ -165,14 +164,18 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(50),
                         border:
-                            Border.all(color: AppColors.indigo600, width: 5)),
+                            Border.all(
+                        color: Colors.black26,
+                        width: 1,
+                      ),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            selectedStore?.name ?? "",
+                            selectedStore?["store"]?["name"] ?? "sem nome",
                             style: TextStyle(
                               fontSize: 18,
                               color: AppColors.indigo600,
