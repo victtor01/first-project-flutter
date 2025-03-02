@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/common/constants/app_colors.dart';
+import 'package:mobile_pointsale/common/constants/app_colors.dart';
 
 void navigateTo(BuildContext context, Widget Function() destination) {
   Navigator.push(

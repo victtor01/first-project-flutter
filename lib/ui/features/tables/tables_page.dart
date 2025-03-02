@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/common/constants/app_colors.dart';
+import 'package:mobile_pointsale/common/constants/app_colors.dart';
 
 class TablesPage extends StatelessWidget {
   const TablesPage({super.key});

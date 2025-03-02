@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:test/common/constants/api_constants.dart';
-import 'package:test/ui/components/button_gradient.dart';
-import 'package:test/ui/components/custom_input.dart';
-import 'package:test/ui/features/select_store/select_store_page.dart';
-import 'package:test/ui/features/sign_up/sign_up_page.dart';
-import 'package:test/utils/api.dart';
-import 'package:test/utils/navigation_utils.dart';
+import 'package:mobile_pointsale/common/constants/api_constants.dart';
+import 'package:mobile_pointsale/ui/components/button_gradient.dart';
+import 'package:mobile_pointsale/ui/components/custom_input.dart';
+import 'package:mobile_pointsale/ui/features/select_store/select_store_page.dart';
+import 'package:mobile_pointsale/ui/features/sign_up/sign_up_page.dart';
+import 'package:mobile_pointsale/utils/api.dart';
+import 'package:mobile_pointsale/utils/navigation_utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       final String url = "${ApiConstants.apiURL}/auth";
 
       try {
-        var response = await ApiService.dio.post(
+        await ApiService.dio.post(
           url,
           options: Options(headers: {"Content-Type": "application/json"}),
           data: {"email": email, "password": password},
@@ -42,8 +42,6 @@ class _LoginPageState extends State<LoginPage> {
       } catch (e) {
         print(e);
       }
-
-      print("$email + $password");
     }
   }
 
@@ -63,8 +61,9 @@ class _LoginPageState extends State<LoginPage> {
                     "Seja bem vindo de volta!",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.w600,
+                      fontFamily: "saira",
                       color: Colors.black87.withAlpha((255 * 0.7).toInt()),
                     ),
                   ),

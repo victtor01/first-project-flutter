@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/common/constants/app_colors.dart';
+import 'package:mobile_pointsale/common/constants/app_colors.dart';
 
 class AnimatedProgressBar extends StatefulWidget {
   final double progress; // De 0 a 1 (exemplo: 0.8 representa 80%)

@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:test/common/constants/app_colors.dart';
-import 'package:test/common/constants/cookies_keys.dart';
-import 'package:test/ui/features/home/home_page.dart';
-import 'package:test/ui/features/login/login_page.dart';
-import 'package:test/ui/features/orders/orders_page.dart';
-import 'package:test/ui/features/products/products_page.dart';
-import 'package:test/ui/features/tables/tables_page.dart';
-import 'package:test/utils/api.dart';
+import 'package:mobile_pointsale/common/constants/app_colors.dart';
+import 'package:mobile_pointsale/common/constants/cookies_keys.dart';
+import 'package:mobile_pointsale/ui/features/home/home_page.dart';
+import 'package:mobile_pointsale/ui/features/login/login_page.dart';
+import 'package:mobile_pointsale/ui/features/orders/orders_page.dart';
+import 'package:mobile_pointsale/ui/features/products/products_page.dart';
+import 'package:mobile_pointsale/ui/features/tables/tables_page.dart';
+import 'package:mobile_pointsale/utils/api.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
         cookie.name == CookiesKeys.accessToken && cookie.value.isNotEmpty);
 
     if (!isAuthenticated) {
-      Navigator.pushReplacement(
+      await Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginPage()),
       );

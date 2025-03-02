@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test/core/models/store_model.dart';
-import 'package:test/core/services/navigation_service.dart';
-import 'package:test/ui/components/animated_progress_bar.dart';
-import 'package:test/core/services/stores_service.dart';
-import 'package:test/ui/features/main/main_page.dart';
-import 'package:test/utils/transform_to_real.dart';
+import 'package:mobile_pointsale/core/models/store_model.dart';
+import 'package:mobile_pointsale/ui/components/animated_progress_bar.dart';
+import 'package:mobile_pointsale/core/services/stores_service.dart';
+import 'package:mobile_pointsale/utils/transform_to_real.dart';
 
 class StoreCard extends StatelessWidget {
   final StoreService storesService = StoreService();
@@ -41,7 +39,7 @@ class StoreCard extends StatelessWidget {
           child: Opacity(
             opacity: value,
             child: Transform.translate(
-              offset: Offset(0, (1 - value) * 40),
+              offset: Offset(0, (1 - value) * 10),
               child: _buildCardContent(context),
             ),
           ),
@@ -188,7 +186,7 @@ class StoreCard extends StatelessWidget {
             style: TextStyle(color: Colors.black45),
           ),
           Text(
-            formatToReais(store?.revenueGoal ?? 0),
+            formatToReais(store?.revenueGoal ?? 10.0),
             style: TextStyle(color: Colors.black45, fontSize: 10),
           ),
         ],

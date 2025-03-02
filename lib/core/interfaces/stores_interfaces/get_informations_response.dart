@@ -1,4 +1,4 @@
-import 'package:test/core/models/store_model.dart';
+import 'package:mobile_pointsale/core/models/store_model.dart';
 
 class InformationStore {
 	Store? store;

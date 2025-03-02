@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:test/app.dart';
-import 'package:test/utils/api.dart';
+import 'package:mobile_pointsale/app.dart';
+import 'package:mobile_pointsale/utils/api.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

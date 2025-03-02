@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test/common/constants/app_colors.dart';
-import 'package:test/core/interfaces/stores_interfaces/get_informations_response.dart';
-import 'package:test/core/models/store_model.dart';
-import 'package:test/core/services/stores_service.dart';
-import 'package:test/ui/components/store_card.dart';
-import 'package:test/ui/features/splash/splash_page.dart';
+import 'package:mobile_pointsale/common/constants/app_colors.dart';
+import 'package:mobile_pointsale/core/interfaces/stores_interfaces/get_informations_response.dart';
+import 'package:mobile_pointsale/core/models/store_model.dart';
+import 'package:mobile_pointsale/core/services/stores_service.dart';
+import 'package:mobile_pointsale/ui/components/store_card.dart';
+import 'package:mobile_pointsale/ui/features/splash/splash_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +17,12 @@ class _HomePageState extends State<HomePage> {
   List<InformationStore> stores = [];
   InformationStore? informationsOfStore;
   bool isLoading = false;
+
+  final TextStyle textStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
 
   final StoreService storeService = StoreService();
   final Border _borderDecorationSelected =
@@ -68,16 +74,9 @@ class _HomePageState extends State<HomePage> {
                 Icon(
                   Icons.store,
                   size: 20,
-                  color: Colors.black54,
+                  color: Colors.black87
                 ),
-                Text(
-                  "Minhas lojas",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
-                ),
+                Text("Minhas lojas", style: textStyle)
               ],
             ),
           ),
@@ -121,19 +120,8 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 spacing: 2,
                 children: [
-                  Icon(
-                    Icons.dashboard,
-                    size: 20,
-                    color: Colors.black54,
-                  ),
-                  Text(
-                    "Dashboard",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54,
-                    ),
-                  ),
+                  Icon(Icons.dashboard, size: 20, color: Colors.black87),
+                  Text("Dashboard", style: textStyle),
                 ],
               ),
             ),
@@ -195,36 +183,72 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildAllEmployeeOfStore() {
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        spacing: 6,
+        children: [
+          Row(
+            spacing: 5,
+            children: [
+              Icon(Icons.supervised_user_circle),
+              Text("Funcionários", style: textStyle),
+            ],
+          ),
+          Row(
+            children: [],
+          )
+        ],
+      ),
+    );
+  }
+
   Widget _buildProfileHeader() {
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 70, vertical: 40),
-              height: 130,
-              decoration: BoxDecoration(color: AppColors.indigo600, boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  offset: Offset(0, 10),
-                  blurRadius: 20,
-                )
-              ]),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 110,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [AppColors.indigo600, AppColors.purple600],
+                  stops: [0.9, 1],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 10),
+                    blurRadius: 20,
+                  )
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "José Victor",
+                  const Text(
+                    "José Victor Araújo",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white70,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -232,18 +256,24 @@ class _HomePageState extends State<HomePage> {
         ),
         Positioned(
           bottom: -30,
-          left: 60,
-          right: 60,
+          left: 15,
+          right: 15,
           child: Container(
             width: 70,
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(
-                color: Colors.black26,
-                width: 1,
-              ),
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.white24,
+                    offset: Offset(-10, -10),
+                    blurRadius: 20),
+                BoxShadow(
+                    color: Colors.black12,
+                    offset: Offset(10, 10),
+                    blurRadius: 20),
+              ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -253,13 +283,34 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     informationsOfStore?.store?.name ?? "sem nome",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       color: AppColors.indigo600,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "Saira",
                     ),
                   ),
                 ),
-                ElevatedButton(onPressed: () {}, child: Icon(Icons.edit))
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    minimumSize: WidgetStateProperty.all(const Size(45, 42)),
+                    maximumSize: WidgetStateProperty.all(const Size(45, 42)),
+                    backgroundColor: WidgetStateProperty.all(
+                      Colors.black12.withAlpha(5),
+                    ),
+                    elevation: WidgetStateProperty.all(0),
+                    shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.edit,
+                    color: Colors.black38,
+                  ),
+                )
               ],
             ),
           ),
@@ -286,6 +337,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -293,6 +345,7 @@ class _HomePageState extends State<HomePage> {
             _buildStoreList(),
             const SizedBox(height: 20),
             _buildDashboardOfStore(),
+            _buildAllEmployeeOfStore(),
           ],
         ),
       ),

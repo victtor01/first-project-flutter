@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:test/common/constants/app_colors.dart';
-import 'package:test/core/interfaces/stores_interfaces/get_informations_response.dart';
-import 'package:test/core/services/navigation_service.dart';
-import 'package:test/core/services/stores_service.dart';
-import 'package:test/ui/components/store_card.dart';
-import 'package:test/ui/features/main/main_page.dart';
+import 'package:mobile_pointsale/common/constants/app_colors.dart';
+import 'package:mobile_pointsale/core/interfaces/stores_interfaces/get_informations_response.dart';
+import 'package:mobile_pointsale/core/services/navigation_service.dart';
+import 'package:mobile_pointsale/core/services/stores_service.dart';
+import 'package:mobile_pointsale/ui/components/store_card.dart';
+import 'package:mobile_pointsale/ui/features/main/main_page.dart';
 
 class SelectStorePage extends StatefulWidget {
   const SelectStorePage({super.key});
@@ -17,18 +17,17 @@ class SelectStorePage extends StatefulWidget {
 class _SelectStorePageState extends State<SelectStorePage> {
   List<InformationStore> stores = [];
   bool isLoading = true;
-		
+
   final StoreService storeService = StoreService();
 
   void _getAllStores() async {
     try {
       List<InformationStore> allStores = await storeService.fetchStores();
-      print(allStores);
-				
-    setState(() {
-      stores = allStores;
-						isLoading = false;
-    });
+
+      setState(() {
+        stores = allStores;
+        isLoading = false;
+      });
     } catch (e) {
       print(e);
     }
